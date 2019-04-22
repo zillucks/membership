@@ -1,11 +1,11 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/animate.min.css": "/css/animate.min.css",
-    "/js/main.js": "/js/main.js",
-    "/js/pace.js": "/js/pace.js",
-    "/js/bootstrap-notify.min.js": "/js/bootstrap-notify.min.js",
-    "/js/plugins/sweetalert.min.js": "/js/plugins/sweetalert.min.js",
-    "/js/plugins/bootstrap-datepicker.min.js": "/js/plugins/bootstrap-datepicker.min.js",
-    "/js/plugins/select2.min.js": "/js/plugins/select2.min.js"
+    "/js/app.js": "/js/app.js?id=f9aecc219d60e4c941d9",
+    "/css/app.css": "/css/app.css?id=032c55327356a4414a26",
+    "/css/animate.min.css": "/css/animate.min.css?id=4c5b76fd19edd0c77e8a",
+    "/js/main.js": "/js/main.js?id=1c5884a37c682a2204db",
+    "/js/pace.js": "/js/pace.js?id=d41d8cd98f00b204e980",
+    "/js/bootstrap-notify.min.js": "/js/bootstrap-notify.min.js?id=cfb23bda2c94565949be",
+    "/js/plugins/sweetalert.min.js": "/js/plugins/sweetalert.min.js?id=0068f44b0aa1b83fa767",
+    "/js/plugins/bootstrap-datepicker.min.js": "/js/plugins/bootstrap-datepicker.min.js?id=47f56600434ab8c2668d",
+    "/js/plugins/select2.min.js": "/js/plugins/select2.min.js?id=1f2c9573e434b3faa97b"
 }
