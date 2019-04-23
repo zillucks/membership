@@ -13,15 +13,6 @@ class PointTransaction extends Model
 
     protected $table = 'point_transaction';
     protected $appends = ['total_point_earned', 'total_point_redeem'];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->invoice_number = 'PO' . Carbon::now()->timestamp;
-        });
-    }
     
     public static function getTransactionStatus()
     {

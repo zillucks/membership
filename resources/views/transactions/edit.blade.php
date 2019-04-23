@@ -31,6 +31,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="invoice_number" class="col-form-label col-lg-4">No Invoice</label>
+                        <div class="col-lg-4">
+                            <input type="text" name="invoice_number" id="invoice_number" class="form-control {{ $errors->has('invoice_number') ? 'is-invalid' : '' }}" value="{{ $transaction->invoice_number }}" required>
+                            @if ($errors->has('invoice_number'))
+                                <div class="invalid-feedback">{{ $errors->first('invoice_number') }}</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="invoice_date" class="col-form-label col-lg-4">Tanggal Invoice</label>
                         <div class="col-lg-4">
                             <input type="date" name="invoice_date" id="invoice_date" class="form-control {{ $errors->has('invoice_date') ? 'is-invalid' : '' }}" value="{{ $transaction->invoice_date }}" required>

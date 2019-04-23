@@ -47,6 +47,7 @@ class TransactionController extends Controller
             $request->input(),
             [
                 'member_id' => 'required',
+                'invoice_number' => 'required|unique:point_transaction',
                 'invoice_date' => 'required|date',
                 'point_earned' => 'required_if:point_redeem,0',
                 'point_redeem' => 'required_if:point_earned,0',
@@ -60,6 +61,7 @@ class TransactionController extends Controller
         DB::beginTransaction();
         try {
             $transaction->member_id = $request->input('member_id');
+            $transaction->invoice_number = $request->input('invoice_number');
             $transaction->invoice_date = $request->input('invoice_date');
             $transaction->description = $request->input('description');
             $transaction->transaction_status = $request->input('transaction_status');
@@ -115,6 +117,7 @@ class TransactionController extends Controller
         $validator = Validator::make(
             $request->input(),
             [
+                'invoice_number' => 'required|unique:point_transaction,invoice_number,' . $transaction->id,
                 'invoice_date' => 'required|date',
                 'point_earned' => 'required_if:point_redeem,0',
                 'point_redeem' => 'required_if:point_earned,0',
