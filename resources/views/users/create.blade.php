@@ -120,8 +120,26 @@
                             <div class="form-group col-lg-8">
                                 <div class="form-check">
                                     <input type="checkbox" name="is_admin" id="is_admin" class="form-check-input" value=true>
-                                    <label for="is_admin" class="form-check-label">Input User sebagai Administrator</label>
+                                    <label for="is_admin" class="form-check-label">Input User sebagai Admin User</label>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="tile" id="user-section" style="display:none">
+                            <h4 class="title">Role Level</h4>
+                            <div class="form-group col-lg-8">
+                                <label for="role_id">Role Level</label>
+                                <select name="role_id" id="role_id" class="form-control {{ $errors->has('role_id') ? 'is-invalid' : '' }}">
+                                    <option value="">Pilih Role Level</option>
+                                    @foreach ($roleLists as $key => $label)
+                                        <option value="{{ $key }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('role_id'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('role_id') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -135,9 +153,9 @@
                                         <option value="{{ $key }}">{{ $label }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('email'))
+                                @if ($errors->has('member_type_id'))
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('email') }}
+                                        {{ $errors->first('member_type_id') }}
                                     </div>
                                 @endif
                             </div>
@@ -170,10 +188,14 @@
         $(function () {
             $('#is_admin').on('change', function () {
                 if ($(this).prop('checked')) {
-                    $('#member-section').fadeOut();
+                    $('#member-section').fadeOut(function () {
+                        $('#user-section').fadeIn();
+                    });
                 }
                 else {
-                    $('#member-section').fadeIn();
+                    $('#user-section').fadeOut(function () {
+                        $('#member-section').fadeIn();
+                    });
                 }
             })
         })

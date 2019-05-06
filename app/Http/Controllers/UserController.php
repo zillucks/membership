@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Identity;
 use App\Models\Member;
@@ -50,6 +51,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $data['roleLists'] = Role::orderBy('role_name', 'asc')->where('slug', '<>', 'member')->pluck('role_name', 'id');
         $data['memberTypeLists'] = MemberType::orderBy('member_type_name', 'asc')->pluck('member_type_name', 'id');
         return view('users.create', $data);
     }
@@ -97,7 +99,14 @@ class UserController extends Controller
 
             $member = new Member();
             $member->member_type_id = $request->input('member_type_id');
-            $member->role_id = $request->has('is_admin') ? 1 : 2; // 1: administrator, 2: member
+            if ($request->has('is_admin')) {
+                $member->role_id = $request->input('role_id');
+            }
+            else {
+                $role = Role::where('slug', 'member')->first();
+                $member->role_id = $role->id;
+            }
+            // $member->role_id = $request->has('is_admin') ? 1 : 2; // 1: administrator, 2: member
             $member->verified_at = Carbon::now();
             $member->is_verified = true;
             $member->user_log = Auth::user()->identity->full_name;

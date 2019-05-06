@@ -27,7 +27,7 @@
                         <label for="member_id" class="col-form-label col-lg-4">Member</label>
                         <div class="col-lg-8">
                             <select name="member_id" id="member_id" class="form-control {{ $errors->has('member_id') ? 'is-invalid' : '' }}" required>
-                                <option value="">Pilih Member</option>
+                                <option value="">-Pilih Member-</option>
                                 @foreach ($members as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach
@@ -120,4 +120,18 @@
 
     </form>
 
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#member_id').select2({
+                allowClear: true,
+            })
+            .on('select2:select', function () {
+                let id = $(this).val();
+            })
+        })
+    </script>
 @endsection

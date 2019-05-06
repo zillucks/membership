@@ -34,11 +34,11 @@ class HomeController extends Controller
         ])->paginate(20);
 
         $data['verified_member'] = Member::whereDoesntHave('role', function ($role) {
-            $role->where('slug', 'administrator');
+            $role->whereIn('slug', ['administrator', 'staff']);
         })->where('is_verified', true)->count();
 
         $data['unverified_member'] = Member::whereDoesntHave('role', function ($role) {
-            $role->where('slug', 'administrator');
+            $role->whereIn('slug', ['administrator', 'staff']);
         })->where('is_verified', false)->count();
 
         $data['platinum_member'] = Member::whereHas('member_type', function ($type) {

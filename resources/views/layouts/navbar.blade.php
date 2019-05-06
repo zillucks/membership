@@ -34,7 +34,10 @@
 		</li>
 
 		@if (Auth::user()->isAdmin())
-			<li><a class="app-menu__item" href="{{ route('admin.users') }}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">User</span></a></li>
+			@if (Auth::user()->hasRole('administrator'))
+				<li><a class="app-menu__item" href="{{ route('admin.users') }}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">User</span></a></li>
+				<li><a class="app-menu__item" href="{{ route('admin.roles') }}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Role</span></a></li>
+			@endif
 			<li><a class="app-menu__item" href="{{ route('admin.members') }}"><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Member</span></a></li>
 			<li><a class="app-menu__item" href="{{ route('admin.transactions') }}"><i class="app-menu__icon fas fa-exchange-alt"></i><span class="app-menu__label">Transaksi</span></a></li>
 		@endif

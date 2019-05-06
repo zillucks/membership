@@ -38,11 +38,20 @@ Route::get('logout', function() {
 
 Route::middleware('auth')->group(function () {
 
-    Route::middleware('role:administrator')->group(function () {
+    Route::middleware('role:administrator,staff')->group(function () {
         
         Route::prefix('admin')->group(function () {
             Route::get('/', 'HomeController@index')->name('admin');
             Route::get('home', 'HomeController@index')->name('admin.home');
+
+            Route::prefix('roles')->group(function () {
+                Route::get('/', 'RoleController@index')->name('admin.roles');
+                Route::get('create', 'RoleController@create')->name('admin.roles.create');
+                Route::post('save', 'RoleController@store')->name('admin.roles.store');
+                Route::get('{role}/edit', 'RoleController@edit')->name('admin.roles.edit');
+                Route::put('{role}/update', 'RoleController@update')->name('admin.roles.update');
+                Route::delete('{role}/delete', 'RoleController@delete')->name('admin.roles.delete');
+            });
 
             Route::prefix('users')->group(function () {
                 Route::get('/', 'UserController@index')->name('admin.users');

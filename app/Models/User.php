@@ -106,7 +106,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         if (!is_null($this->member)) {
             if (!is_null($this->member->role)) {
-                return $this->member->role->slug == 'administrator';
+                return $this->member->role->slug == 'administrator' || $this->member->role->slug == 'staff';
             }
             return false;
         }

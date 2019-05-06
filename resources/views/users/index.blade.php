@@ -41,7 +41,8 @@
 									<tr class="{{ $user->isAdmin() ? 'text-danger' : '' }}" data-id="{{ $user->id }}">
 										<td>{{ $user->identity->full_name }}</td>
 										<td>{{ $user->email }}</td>
-										<td>{!! $user->isAdmin() ? $user->member->role->role_name : (isset($user->member->member_type) ? $user->member->member_type->member_type_name : '') !!}</td>
+										<td>{!! $user->member->role->slug == 'member' ? (isset($user->member->member_type) ? $user->member->member_type->member_type_name : '') : $user->member->role->role_name !!}</td>
+										{{-- <td>{!! $user->isAdmin() ? $user->member->role->role_name : (isset($user->member->member_type) ? $user->member->member_type->member_type_name : '') !!}</td> --}}
 										<td>{{ isset($user->member) ? $user->member->current_point : '' }}</td>
 										<td class="justify-content-center">
 											<a href="{{ route('admin.users.view', $user->id) }}" class="px-2 btn-link" title="View Detail"><i class="fas fa-eye"></i></a>
